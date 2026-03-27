@@ -8,6 +8,7 @@ PORT = 8080
 PROJECT_DIR = os.path.expanduser("~/my_project")
 APP_SERVICE = "my_app.service"
 
+
 class WebhookHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
