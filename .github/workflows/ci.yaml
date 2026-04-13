@@ -5,8 +5,20 @@ on:
   pull_request:
 
 jobs:
+  
   test:
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mariadb:10.11
+        env:
+          MARIADB_DATABASE: catty_reminders
+          MARIADB_USER: root
+          MARIADB_PASSWORD: mypass
+        ports:
+          - 3306:3306
+        options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout code
